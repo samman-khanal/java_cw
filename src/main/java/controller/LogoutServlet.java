@@ -32,4 +32,3 @@ public class LogoutServlet extends HttpServlet {
         doGet(request, response);
     }
 }
-// Works fine.
