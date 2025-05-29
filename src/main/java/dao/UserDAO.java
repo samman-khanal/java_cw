@@ -163,7 +163,8 @@ public class UserDAO {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                users.add(mapUser(rs));
+                UserModel user = mapUser(rs);
+                users.add(user);
             }
         }
         catch (SQLException e) {

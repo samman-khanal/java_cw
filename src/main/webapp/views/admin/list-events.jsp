@@ -1,108 +1,3 @@
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<%@ page import="java.util.List" %>--%>
-<%--<%@ page import="model.EventModel" %>--%>
-
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>Event List</title>--%>
-<%--&lt;%&ndash;    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/admin/list-events.css">&ndash;%&gt;--%>
-<%--    <style>--%>
-<%--        body {--%>
-<%--            font-family: Arial, sans-serif;--%>
-<%--            margin: 20px;--%>
-<%--        }--%>
-<%--        .container {--%>
-<%--            max-width: 1200px;--%>
-<%--            margin: 0 auto;--%>
-<%--        }--%>
-<%--        table {--%>
-<%--            width: 100%;--%>
-<%--            border-collapse: collapse;--%>
-<%--            margin-top: 20px;--%>
-<%--        }--%>
-<%--        table, th, td {--%>
-<%--            border: 1px solid #ddd;--%>
-<%--        }--%>
-<%--        th, td {--%>
-<%--            padding: 10px;--%>
-<%--            text-align: left;--%>
-<%--        }--%>
-<%--        th {--%>
-<%--            background-color: #f4f4f4;--%>
-<%--        }--%>
-<%--        tr:nth-child(even) {--%>
-<%--            background-color: #f9f9f9;--%>
-<%--        }--%>
-<%--        .no-events {--%>
-<%--            text-align: center;--%>
-<%--            color: #b3b3b3;--%>
-<%--            font-size: 18px;--%>
-<%--            margin-top: 20px;--%>
-<%--        }--%>
-<%--        .actions a {--%>
-<%--            color: #007BFF;--%>
-<%--            text-decoration: none;--%>
-<%--            margin-right: 10px;--%>
-<%--        }--%>
-<%--        .actions a:hover {--%>
-<%--            text-decoration: underline;--%>
-<%--        }--%>
-<%--    </style>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<div class="container">--%>
-<%--    <h1>Event List</h1>--%>
-
-<%--    <table>--%>
-<%--        <thead>--%>
-<%--        <tr>--%>
-<%--            <th>Event ID</th>--%>
-<%--            <th>Name</th>--%>
-<%--            <th>Description</th>--%>
-<%--            <th>Location</th>--%>
-<%--            <th>Date</th>--%>
-<%--            <th>Time</th>--%>
-<%--            <th>Category</th>--%>
-<%--            <th>Actions</th>--%>
-<%--        </tr>--%>
-<%--        </thead>--%>
-<%--        <tbody>--%>
-<%--        <%--%>
-<%--            List<EventModel> events = (List<EventModel>) request.getAttribute("allEvents");--%>
-<%--            if (events != null && !events.isEmpty()) {--%>
-<%--                for (EventModel event : events) {--%>
-<%--        %>--%>
-<%--        <tr>--%>
-<%--            <td><%= event.getId() %></td>--%>
-<%--            <td><%= event.getName() %></td>--%>
-<%--            <td><%= event.getDescription() %></td>--%>
-<%--            <td><%= event.getLocation() %></td>--%>
-<%--            <td><%= event.getDate() %></td>--%>
-<%--            <td><%= event.getTime() %></td>--%>
-<%--            <td><%= event.getCategory() %></td>--%>
-<%--            <td class="actions">--%>
-<%--                <a href="${pageContext.request.contextPath}/EditEventServlet?id=<%= event.getId() %>">Edit</a>--%>
-<%--                <a href="${pageContext.request.contextPath}/DeleteEventServlet?id=<%= event.getId() %>" --%>
-<%--                   onclick="return confirm('Are you sure you want to delete this event?')">Delete</a>--%>
-<%--            </td>--%>
-<%--        </tr>--%>
-<%--        <%--%>
-<%--                }--%>
-<%--            } else {--%>
-<%--        %>--%>
-<%--        <tr>--%>
-<%--            <td colspan="8" class="no-events">No events found.</td>--%>
-<%--        </tr>--%>
-<%--        <%--%>
-<%--            }--%>
-<%--        %>--%>
-<%--        </tbody>--%>
-<%--    </table>--%>
-<%--</div>--%>
-<%--</body>--%>
-<%--</html>--%>
-
-
 <!--new code-->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
@@ -110,14 +5,16 @@
 
 <html>
 <head>
-    <title>Event Management Dashboard</title>
+    <title>Event Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/styles/admin/list-events.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
@@ -182,7 +79,8 @@
 
         .container {
             max-width: 1400px;
-            margin: 0 auto;
+            /*margin: 0 auto;*/
+            margin-left: 240px;
             padding: 40px 20px;
             position: relative;
             z-index: 1;
@@ -197,7 +95,7 @@
         .header h1 {
             font-size: 3.5rem;
             font-weight: 800;
-            /*background: linear-gradient(45deg, #fff, #f0f0f0);*/
+            background: linear-gradient(45deg, #fff, #c2bdbd);
             -webkit-background-clip: text;
             /*-webkit-text-fill-color: transparent;*/
             /*background-clip: text;*/
@@ -335,7 +233,7 @@
             padding: 10px 20px;
             border: 2px solid rgba(255, 255, 255, 0.3);
             background: transparent;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(115, 113, 113, 0.9);
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -603,6 +501,54 @@
     </style>
 </head>
 <body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>College Admin</span>
+    </div>
+    <ul class="nav-links">
+        <li>
+            <a href="<%= request.getContextPath()%>/views/admin/dashboard.jsp">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="<%= request.getContextPath()%>/views/admin/add-event.jsp">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Add Event</span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="<%= request.getContextPath()%>/ListEventServlet">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Total Events</span>
+            </a>
+        </li>
+        <li>
+            <a href="<%= request.getContextPath()%>/views/admin/event-registrations.jsp">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Registrations</span>
+            </a>
+        </li>
+        <li>
+            <a href="<%= request.getContextPath()%>/ListUserServlet">
+                <i class="fas fa-user-friends"></i>
+                <span>Users</span>
+            </a>
+        </li>
+        <li>
+            <a href="<%= request.getContextPath()%>/LogoutServlet">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+        <li>
+    </ul>
+</div>
+
 <div class="animated-bg">
     <div class="floating-shapes">
         <div class="shape"></div>
@@ -613,24 +559,24 @@
 
 <div class="container">
     <div class="header">
-        <h1><i class="fas fa-calendar-alt"></i> Event Management Dashboard</h1>
+        <h1><i class="fas fa-calendar-alt"></i> Total Events</h1>
         <p>Manage and organize your events with style</p>
     </div>
 
-    <div class="stats-bar">
-        <div class="stat-card">
-            <span class="stat-number" id="totalEvents">0</span>
-            <div class="stat-label">Total Events</div>
-        </div>
-        <div class="stat-card">
-            <span class="stat-number" id="activeEvents">0</span>
-            <div class="stat-label">Active Events</div>
-        </div>
-        <div class="stat-card">
-            <span class="stat-number" id="categories">0</span>
-            <div class="stat-label">Categories</div>
-        </div>
-    </div>
+<%--    <div class="stats-bar">--%>
+<%--        <div class="stat-card">--%>
+<%--            <span class="stat-number" id="totalEvents">0</span>--%>
+<%--            <div class="stat-label">Total Events</div>--%>
+<%--        </div>--%>
+<%--        <div class="stat-card">--%>
+<%--            <span class="stat-number" id="activeEvents">0</span>--%>
+<%--            <div class="stat-label">Active Events</div>--%>
+<%--        </div>--%>
+<%--        <div class="stat-card">--%>
+<%--            <span class="stat-number" id="categories">0</span>--%>
+<%--            <div class="stat-label">Categories</div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 
     <div class="search-filter-bar">
         <div class="search-box">
@@ -690,7 +636,7 @@
                 </a>
                 <a href="${pageContext.request.contextPath}/DeleteEventServlet?id=<%= event.getId() %>"
                    class="action-btn delete-btn"
-                   onclick="return confirmDelete('<%= event.getName() %>')">
+                   onclick="return confirmDelete('${event.getName()}')">
                     <i class="fas fa-trash"></i> Delete
                 </a>
             </div>
@@ -832,6 +778,7 @@
     }
 
     function confirmDelete(eventName) {
+        console.log(eventName);
         return confirm(`Are you sure you want to delete "${eventName}"?\n\nThis action cannot be undone.`);
     }
 

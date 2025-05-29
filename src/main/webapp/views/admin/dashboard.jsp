@@ -32,19 +32,19 @@
                 </a>
             </li>
             <li>
-                <a href="<%= request.getContextPath()%>/views/admin/list-events.jsp">
+                <a href="<%= request.getContextPath()%>/ListEventServlet">
                     <i class="fas fa-calendar-alt"></i>
-                    <span>Events</span>
+                    <span>Total Events</span>
                 </a>
             </li>
             <li>
-                <a href="<%= request.getContextPath()%>">
+                <a href="<%= request.getContextPath()%>/views/admin/event-registrations.jsp">
                     <i class="fas fa-clipboard-list"></i>
                     <span>Registrations</span>
                 </a>
             </li>
             <li>
-                <a href="<%= request.getContextPath()%>/views/admin/list-users.jsp">
+                <a href="<%= request.getContextPath()%>/ListUserServlet">
                     <i class="fas fa-user-friends"></i>
                     <span>Users</span>
                 </a>

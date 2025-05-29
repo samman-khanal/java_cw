@@ -35,7 +35,7 @@ public class EventDAO {
         return -1;
     }
 
-    // Method to delete event
+    // Method to delete an event
     public static boolean deleteEvent(int id) {
         String query = "DELETE FROM Events WHERE id = ?";
         try (Connection connection = DBConnectionUtil.getConnection();

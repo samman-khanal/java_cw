@@ -1,0 +1,90 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset and Base Styles */
+:root {
+    --primary-color: #3a36db;
+    --primary-light: #f0f0ff;
+    --secondary-color: #6c757d;
+    --dark-bg: #1e1e2d;
+    --sidebar-width: 240px;
+    --light-gray: #f8f9fa;
+    --border-color: #e9ecef;
+    --text-color: #212529;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+
+    /* Card Colors */
+    --blue-bg: #e7f1ff;
+    --blue-icon: #0d6efd;
+    --green-bg: #e7fff1;
+    --green-icon: #00b57d;
+    --orange-bg: #fff7e7;
+    --orange-icon: #ff9800;
+    --purple-bg: #f7e7ff;
+    --purple-icon: #6f42c1;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--dark-bg);
+    color: white;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 10px 0;
+}
+
+.nav-links li {
+    margin-bottom: 5px;
+}
+
+.nav-links li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li.active a {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-links li a i {
+    font-size: 16px;
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
