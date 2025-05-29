@@ -4,6 +4,7 @@ import model.EventModel;
 import utils.DBConnectionUtil;
 
 import java.sql.*;
+import java.util.List;
 
 public class EventDAO {
 
@@ -68,5 +69,39 @@ public class EventDAO {
             System.err.println("Error getting event by ID: " + e.getMessage());
         }
         return null;
+    }
+
+    // Method to list all the events.
+    public static List<EventModel> listEvents() {
+        List<EventModel> events = new java.util.ArrayList<>();
+        String query = "SELECT * FROM Events";
+
+        try (Connection connection = DBConnectionUtil.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                EventModel event = mapEvent(rs);
+                events.add(event);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("Error listing events: " + e.getMessage());
+            System.err.println("Error listing events: " + e.getMessage());
+        }
+        return events;
+    }
+
+    // Method to map ResultSet to event.
+    private static EventModel mapEvent(ResultSet rs) throws SQLException {
+        EventModel event = new EventModel();
+        event.setId(rs.getInt("id"));
+        event.setName(rs.getString("name"));
+        event.setDescription(rs.getString("description"));
+        event.setLocation(rs.getString("location"));
+        event.setDate(rs.getString("date"));
+        event.setTime(rs.getString("time"));
+        event.setCategory(rs.getString("category"));
+
+        return event;
     }
 }

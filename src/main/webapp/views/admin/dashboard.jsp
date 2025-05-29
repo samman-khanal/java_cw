@@ -26,6 +26,12 @@
                 </a>
             </li>
             <li>
+                <a href="<%= request.getContextPath()%>/views/admin/add-event.jsp">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Add Event</span>
+                </a>
+            </li>
+            <li>
                 <a href="<%= request.getContextPath()%>/views/admin/list-events.jsp">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Events</span>
@@ -41,12 +47,6 @@
                 <a href="<%= request.getContextPath()%>/views/admin/list-users.jsp">
                     <i class="fas fa-user-friends"></i>
                     <span>Users</span>
-                </a>
-            </li>
-            <li>
-                <a href="<%= request.getContextPath()%>">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
                 </a>
             </li>
             <li>

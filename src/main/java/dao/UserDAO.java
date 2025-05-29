@@ -6,6 +6,8 @@ import utils.DBConnectionUtil;
 import utils.HashPasswordUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
@@ -123,13 +125,12 @@ public class UserDAO {
         PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, email);
             ps.setString(2, username);
-//            ps.setString(3, password);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String hashedPassword = rs.getString("password");
 
-                // Checking if the password matches hashed password or not.
+                // Checking if the password matches the hashed password or not.
                 if (HashPasswordUtil.checkPassword(password, hashedPassword)) {
                     UserModel user = new UserModel();
                     user.setId(rs.getInt("id"));
@@ -150,5 +151,41 @@ public class UserDAO {
         }
         // Return null if authentication fails.
         return null;
+    }
+
+    // Method to list all the users.
+    public static List<UserModel> listUsers() {
+        List<UserModel> users = new ArrayList<>();
+        String query = "SELECT * FROM Users WHERE role = 'user'";
+
+        try (Connection connection = DBConnectionUtil.getConnection();
+        PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                users.add(mapUser(rs));
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("Error listing users: " + e.getMessage());
+            System.err.println("Error listing users: " + e.getMessage());
+        }
+        return users;
+    }
+
+    // Method to map ResultSet to user.
+    private static UserModel mapUser(ResultSet rs) throws SQLException {
+        UserModel user = new UserModel();
+        user.setId(rs.getInt("id"));
+        user.setFullName(rs.getString("fullName"));
+        user.setUsername(rs.getString("username"));
+        user.setEmail(rs.getString("email"));
+        user.setPassword(null);
+        user.setRole(rs.getString("role"));
+        user.setPhone(null);
+        user.setAddress(null);
+        user.setProfilePicture(null);
+
+        return user;
     }
 }
