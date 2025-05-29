@@ -54,10 +54,12 @@ public class RegisterServlet extends HttpServlet {
             int userID = UserDAO.addUser(user);
 
             if (userID > 0) {
+                System.out.println("User is created successfully with ID: " + userID + " and email: " + email + ".");
+
                 // Successful Registration
                 request.getSession().setAttribute("registrationSuccessful", "Registration successful. Please login.");
-                // .sendRedirect(.getContextPath() + "/views/auth/login.jsp"); response, request
-                request.getRequestDispatcher("/LoginServlet").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/LoginServlet");
+
             }
             else {
                 // Failed Registration
@@ -72,4 +74,3 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 }
-// Works fine.

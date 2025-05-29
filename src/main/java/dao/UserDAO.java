@@ -31,6 +31,7 @@ public class UserDAO {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     user.setId(rs.getInt(1));
+                    return rs.getInt(1);
                 }
             }
         }
@@ -116,13 +117,13 @@ public class UserDAO {
 
     // Method for authenticating the user.
     public static UserModel validateUser(String email, String username, String password) {
-        String query = "SELECT * FROM Users WHERE email = ? AND username = ? AND password = ?";
+        String query = "SELECT * FROM Users WHERE email = ? AND username = ?";
 
         try (Connection connection = DBConnectionUtil.getConnection();
         PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, email);
             ps.setString(2, username);
-            ps.setString(3, password);
+//            ps.setString(3, password);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -138,6 +139,8 @@ public class UserDAO {
                     user.setRole(rs.getString("role"));
                     user.setPassword(null);
                     return user;
+                } else{
+                    System.out.println("false");
                 }
             }
         }

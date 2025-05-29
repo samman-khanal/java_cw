@@ -12,8 +12,9 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Redirect to the login page.
-        request.getRequestDispatcher("/views/auth/login.jsp").forward(request, response);
+
+        System.out.println("Redirecting to the login page.");
+        response.sendRedirect(request.getContextPath() + "/views/auth/login.jsp");
     }
 
     @Override
@@ -28,8 +29,9 @@ public class LoginServlet extends HttpServlet {
         if (email == null || email.trim().isEmpty() ||
                 username == null || username.trim().isEmpty() ||
                 password == null || password.trim().isEmpty()) {
+
             request.setAttribute("error", "Please fill all the fields");
-            request.getRequestDispatcher("/views/auth/login.jsp");
+            request.getRequestDispatcher("/views/auth/login.jsp").forward(request, response);
             return;
         }
 
@@ -43,10 +45,10 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("email", email);
                 session.setAttribute("role", user.getRole());
 
-                // Role based authentication
+                // Role-based authentication
                 String role = user.getRole();
                 if (role.equals("admin")) {
-                    // If user is admin.
+                    // If the user is admin.
                     response.sendRedirect(request.getContextPath() + "/views/admin/dashboard.jsp");
                 }
                 else if (role.equals("user")) {
@@ -57,12 +59,13 @@ public class LoginServlet extends HttpServlet {
                     request.setAttribute("error", "Invalid username or password");
                     response.sendRedirect(request.getContextPath() + "/views/auth/login.jsp");
                 }
+            } else{
+                System.out.println("User is null.");
             }
         }
         catch (Exception e) {
             request.setAttribute("error", "An error encountered." + e.getMessage());
             response.sendRedirect(request.getContextPath() + "/views/auth/login.jsp");
         }
-
     }
 }
